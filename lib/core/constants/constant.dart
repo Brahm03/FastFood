@@ -35,7 +35,7 @@ class PaddingMarginConst {
   static const EdgeInsets Small = EdgeInsets.all(14.0);
   static const EdgeInsets Medium = EdgeInsets.all(18.0);
   static const EdgeInsets Large = EdgeInsets.all(22.0);
-  static const EdgeInsets ExtraLarge = EdgeInsets.all(28.0);
+  static const EdgeInsets ExtraLarge = EdgeInsets.all(50.0);
   static EdgeInsets Huge = EdgeInsets.symmetric(horizontal: getWidth(38));
   static const EdgeInsets TextInputPadding =
       EdgeInsets.symmetric(horizontal: 58);

@@ -11,6 +11,7 @@ class MytextInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      cursorColor: Colors.black,
       controller: controller,
       decoration: InputDecoration(
         contentPadding: PaddingMarginConst.TextInputPadding,
@@ -18,6 +19,7 @@ class MytextInput extends StatelessWidget {
         fillColor: ColorConst.TextInputColor,
         filled: true,
         border: OutlineInputBorder(
+          borderSide: BorderSide.none,
           borderRadius: BorderRadius.circular(RadiusConst.Small),
         ),
       ),

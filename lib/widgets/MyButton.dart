@@ -10,8 +10,11 @@ class Mybutton extends StatelessWidget {
   final double width;
   final double height;
   final Color textColor;
+  final VoidCallback onpressed;
   const Mybutton(
-      {this.textColor= ColorConst.KprimaryColor,
+      {
+        required this.onpressed,
+        this.textColor = ColorConst.KprimaryColor,
       required this.color,
       this.height = 56,
       this.width = 321,
@@ -28,12 +31,15 @@ class Mybutton extends StatelessWidget {
                 borderRadius: BorderRadius.circular(RadiusConst.Medium)),
             primary: color,
             fixedSize: Size(getWidth(width), getHeight(height))),
-        onPressed: () {},
+        onPressed: onpressed,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(padding: PaddingMarginConst.ExtraSmall, child: icon,),
+            Padding(
+              padding: PaddingMarginConst.ExtraSmall,
+              child: icon,
+            ),
             Mytext.mytext(text: text, color: textColor)
           ],
         ));
