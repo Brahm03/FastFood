@@ -1,8 +1,14 @@
+import 'package:fastfood/core/components/Size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ColorConst {
   static const Color KprimaryColor = Colors.white;
+  static const Color TextColor = Colors.black;
+  static const Color TextInputColor = Color(0XFFFFFFFF);
+  static const Color BackGrounColor = Color(0XFFF3F3F3);
+  static const Color ButtonColor = Color(0xffF8774A);
+  static const Color ButtonColor2 = Color(0xff1877F2);
 }
 
 class Picconst {
@@ -12,6 +18,8 @@ class Picconst {
 
 class IconCons {
   static Image Logo = Image.asset('assets/icons/logo.png');
+  static Image Google = Image.asset('assets/icons/google.png');
+  static Image Facebook = Image.asset('assets/icons/facebook.png');
 }
 
 class RadiusConst {
@@ -28,6 +36,9 @@ class PaddingMarginConst {
   static const EdgeInsets Medium = EdgeInsets.all(18.0);
   static const EdgeInsets Large = EdgeInsets.all(22.0);
   static const EdgeInsets ExtraLarge = EdgeInsets.all(28.0);
+  static EdgeInsets Huge = EdgeInsets.symmetric(horizontal: getWidth(38));
+  static const EdgeInsets TextInputPadding =
+      EdgeInsets.symmetric(horizontal: 58);
 }
 
 class FontSize {
@@ -47,5 +58,4 @@ class FontweightConst {
   static const FontWeight w4 = FontWeight.w400;
   static const FontWeight w5 = FontWeight.w500;
   static const FontWeight w6 = FontWeight.w600;
-
 }
