@@ -9,7 +9,9 @@ class ColorConst {
   static const Color BackGrounColor = Color(0XFFF3F3F3);
   static const Color ButtonColor = Color(0xffF8774A);
   static const Color ButtonColor2 = Color(0xff1877F2);
+  static const Color ButtonColor3 = Color(0xff4FA987);
   static const Color MainPagecolor = Color(0xff97d5c7);
+  static const Color Amber = Color(0xffFDF9EA);
 }
 
 class Picconst {
@@ -22,7 +24,11 @@ class IconCons {
   static Image Google = Image.asset('assets/icons/google.png');
   static Image Facebook = Image.asset('assets/icons/facebook.png');
   static SvgPicture HomeIcon = SvgPicture.asset('assets/icons/home.svg');
-  static Image Favorite = Image.asset('assets/icons/fav.png');
+  static Icon Favorite = const Icon(
+    Icons.favorite,
+    color: ColorConst.MainPagecolor,
+    size: FontSize.ExtraLarge,
+  );
 }
 
 class RadiusConst {
