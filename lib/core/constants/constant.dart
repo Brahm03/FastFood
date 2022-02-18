@@ -9,6 +9,7 @@ class ColorConst {
   static const Color BackGrounColor = Color(0XFFF3F3F3);
   static const Color ButtonColor = Color(0xffF8774A);
   static const Color ButtonColor2 = Color(0xff1877F2);
+  static const Color MainPagecolor = Color(0xff97d5c7);
 }
 
 class Picconst {
@@ -20,6 +21,8 @@ class IconCons {
   static Image Logo = Image.asset('assets/icons/logo.png');
   static Image Google = Image.asset('assets/icons/google.png');
   static Image Facebook = Image.asset('assets/icons/facebook.png');
+  static SvgPicture HomeIcon = SvgPicture.asset('assets/icons/home.svg');
+  static Image Favorite = Image.asset('assets/icons/fav.png');
 }
 
 class RadiusConst {
@@ -42,7 +45,7 @@ class PaddingMarginConst {
 }
 
 class FontSize {
-  static const ExtraSmall = 10.0;
+  static const ExtraSmall = 12.0;
   static const Small = 14.0;
   static const Medium = 18.0;
   static const Large = 25.0;

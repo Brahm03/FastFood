@@ -1,3 +1,4 @@
+import 'package:fastfood/screens/Main_page.dart';
 import 'package:fastfood/screens/Registiration_Page.dart';
 import 'package:fastfood/screens/SplashScreen.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,8 @@ class Myroutes {
       return MaterialPageRoute(builder: (context) => const SplashScreen());
     case '/register':
       return MaterialPageRoute(builder: (context) => const Registiration_Page());
+     case '/main':
+      return MaterialPageRoute(builder: (context) => const Main_page());  
     }
   }
 }

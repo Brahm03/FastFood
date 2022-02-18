@@ -2,9 +2,12 @@ import 'package:fastfood/core/components/Borderradius.dart';
 import 'package:fastfood/core/components/Size_config.dart';
 import 'package:fastfood/core/components/face_book_googlelogo.dart';
 import 'package:fastfood/core/constants/constant.dart';
+import 'package:fastfood/models/userdata.dart';
+import 'package:fastfood/models/usermodel.dart';
 import 'package:fastfood/widgets/LoginChangerBUtton.dart';
 import 'package:fastfood/widgets/MyButton.dart';
 import 'package:fastfood/widgets/MyTextformField.dart';
+import 'package:fastfood/widgets/Mysnackbar.dart';
 import 'package:fastfood/widgets/Mytext.dart';
 import 'package:flutter/material.dart';
 
@@ -262,10 +265,7 @@ class _Registiration_PageState extends State<Registiration_Page> {
                                   Row(
                                     children: [
                                       Mybutton(
-                                        onpressed: () {
-                                          if (_signupkey.currentState!
-                                              .validate()) {}
-                                        },
+                                        onpressed: _onpressedRegister,
                                         color: ColorConst.ButtonColor,
                                         text: 'Sign-up',
                                         width: getWidth(183),
@@ -288,5 +288,31 @@ class _Registiration_PageState extends State<Registiration_Page> {
                   )
           ],
         ));
+  }
+
+  _onpressedRegister() {
+    if (_signupkey.currentState!.validate()) {
+      String fullname = _Full_name.text.trim();
+      String mobilenumber = _usename_mobile.text.trim();
+      String password = _password.text.trim();
+      bool _isTrue = true;
+
+      for (Usermodel users in Userdata.userlist) {
+        if (mobilenumber == users.mobile_number) {
+          _isTrue = false;
+        }
+      }
+
+      if (_isTrue == true) {
+        Userdata.userlist.add(Usermodel(
+            full_name: fullname,
+            mobile_number: mobilenumber,
+            passoword: password));
+        Navigator.pushNamedAndRemoveUntil(context, '/main', (route) => false);
+      } else {
+        MyMessanger.showMessanger(
+            context, 'Ther is a user with this number please try again');
+      }
+    }
   }
 }
