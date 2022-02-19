@@ -1,20 +1,29 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:fastfood/core/components/GradientColor.dart';
 import 'package:fastfood/core/components/Size_config.dart';
+import 'package:fastfood/core/components/boxdecaration.dart';
 import 'package:fastfood/core/constants/constant.dart';
+import 'package:fastfood/models/brandModel.dart';
+import 'package:fastfood/models/brand_data.dart';
 import 'package:fastfood/models/cardData.dart';
 import 'package:fastfood/models/carmodel.dart';
 import 'package:fastfood/models/foods_data.dart';
 import 'package:fastfood/models/foods_model.dart';
+import 'package:fastfood/screens/info_page.dart';
 import 'package:fastfood/widgets/BackContainer.dart';
+import 'package:fastfood/widgets/MyButton.dart';
 import 'package:fastfood/widgets/Mytext.dart';
+import 'package:fastfood/widgets/OulindedButton.dart';
 import 'package:fastfood/widgets/SaggestFoods.dart';
 import 'package:fastfood/widgets/SwiperCard.dart';
 import 'package:fastfood/widgets/all.dart';
+import 'package:fastfood/widgets/brands.dart';
 import 'package:fastfood/widgets/catoagories.dart';
 import 'package:fastfood/widgets/meal_type.dart';
+import 'package:fastfood/widgets/type_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class Main_page extends StatefulWidget {
   const Main_page({Key? key}) : super(key: key);
@@ -96,7 +105,7 @@ class _Main_pageState extends State<Main_page> {
                 SizedBox(
                   height: getHeight(413),
                 ),
-                Divider(
+                const Divider(
                   thickness: 0.5,
                   color: Colors.black,
                 ),
@@ -121,9 +130,16 @@ class _Main_pageState extends State<Main_page> {
                             itemBuilder: (_, __) {
                               foods_nodel foods = Foods_data.foods_list[__];
                               return SuggestFoods(
-                              location: foods.location,
-                              name: foods.food_name,
-                              price: foods.food_price,
+                                ontapp: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Info_page(model: foods,)),
+                                      );
+                                },
+                                location: foods.location,
+                                name: foods.food_name,
+                                price: foods.food_price,
                                 pic: foods.pic,
                               );
                             }),
@@ -133,24 +149,79 @@ class _Main_pageState extends State<Main_page> {
                   clipBehavior: Clip.none,
                 ),
                 Food_type(),
-                All(color: ColorConst.ButtonColor3, text_size: FontSize.Medium , text: 'Save Rescued Food for 50%!', text1: 'Left over supplies and food have been\nused up.'),
+                const All(
+                    color: ColorConst.ButtonColor3,
+                    text_size: FontSize.Medium,
+                    text: 'Save Rescued Food for 50%!',
+                    text1: 'Left over supplies and food have been\nused up.'),
                 SizedBox(
-                        height: getHeight(254),
-                        width: double.infinity,
-                        child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: Foods_data.lagman.length,
-                            itemBuilder: (_, __) {
-                              foods_nodel lagmans = Foods_data.lagman[__];
-                              return SuggestFoods(
-                              location: lagmans.location,
-                              name: lagmans.food_name,
-                              price: lagmans.food_price,
-                                pic: lagmans.pic,
-                              );
-                            }),
-                      ),
-                All(color: ColorConst.TextColor, text_size: FontSize.Large, text: 'Order again', text1: 'You Ordered from 17 Restaurants')
+                  height: getHeight(254),
+                  width: double.infinity,
+                  child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: Foods_data.lagman.length,
+                      itemBuilder: (_, __) {
+                        foods_nodel lagmans = Foods_data.lagman[__];
+                        return SuggestFoods(
+                          location: lagmans.location,
+                          name: lagmans.food_name,
+                          price: lagmans.food_price,
+                          pic: lagmans.pic, ontapp: () {  },
+                        );
+                      }),
+                ),
+                const All(
+                    color: ColorConst.TextColor,
+                    text_size: FontSize.Large,
+                    text: 'Order again',
+                    text1: 'You Ordered from 17 Restaurants'),
+                SizedBox(
+                  height: getHeight(254),
+                  width: double.infinity,
+                  child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: Foods_data.lagman.length,
+                      itemBuilder: (_, __) {
+                        Branmodel brands = Branddata.brandData[__];
+                        return SuggestFoods(
+                          location: brands.location!,
+                          name: brands.brand_name,
+                          price: '\$200',
+                          pic: brands.pic!, ontapp: () {  },
+                        );
+                      }),
+                ),
+                const All(
+                    color: ColorConst.TextColor,
+                    text_size: FontSize.Medium,
+                    text: 'All Restaurants',
+                    text1: '256 Restaurants near you'),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: const [
+                    Type_button(text: 'Free Delivery'),
+                    Type_button(text: 'Rescued'),
+                    Type_button(text: 'Offer'),
+                  ],
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height,
+                  child: ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: Branddata.brandData.length,
+                      itemBuilder: (_, __) {
+                        Branmodel brands = Branddata.brandData[__];
+                        return Brands(
+                            brandname: brands.brand_name,
+                            comment: brands.comment,
+                            pic: brands.brand_icon);
+                      }),
+                ),
+                MyOutlinedButton(
+                  text: 'View All Restaurants',
+                  onPresssed: () {},
+                  width: getWidth(300),
+                )
               ],
             ),
           ),

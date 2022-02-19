@@ -21,6 +21,8 @@ class MyOutlinedButton extends StatelessWidget {
       style: OutlinedButton.styleFrom(fixedSize: Size(width, height), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(RadiusConst.Medium))),
       onPressed: onPresssed,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Mytext.mytext(
               text: text, fontWeight: FontweightConst.w1, color: Colors.black, size: FontSize.Small),

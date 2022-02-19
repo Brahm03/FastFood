@@ -12,6 +12,7 @@ class ColorConst {
   static const Color ButtonColor3 = Color(0xff4FA987);
   static const Color MainPagecolor = Color(0xff97d5c7);
   static const Color Amber = Color(0xffFDF9EA);
+  static const Color type_color = Color(0xffF1F4F3);
 }
 
 class Picconst {
@@ -67,4 +68,9 @@ class FontweightConst {
   static const FontWeight w4 = FontWeight.w400;
   static const FontWeight w5 = FontWeight.w500;
   static const FontWeight w6 = FontWeight.w600;
+}
+
+class Lorem {
+  static String lorem =
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.';
 }

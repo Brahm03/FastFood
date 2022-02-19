@@ -10,11 +10,13 @@ class Mybutton extends StatelessWidget {
   final double width;
   final double height;
   final Color textColor;
+  final double text_size;
   final VoidCallback onpressed;
   const Mybutton(
       {
-        required this.onpressed,
-        this.textColor = ColorConst.KprimaryColor,
+      this.text_size = FontSize.Medium,
+      required this.onpressed,
+      this.textColor = ColorConst.KprimaryColor,
       required this.color,
       this.height = 56,
       this.width = 321,
@@ -40,7 +42,7 @@ class Mybutton extends StatelessWidget {
               padding: PaddingMarginConst.ExtraSmall,
               child: icon,
             ),
-            Mytext.mytext(text: text, color: textColor)
+            Mytext.mytext(text: text, color: textColor, size: text_size)
           ],
         ));
   }
