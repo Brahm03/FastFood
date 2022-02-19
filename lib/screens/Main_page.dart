@@ -33,6 +33,7 @@ class Main_page extends StatefulWidget {
 }
 
 class _Main_pageState extends State<Main_page> {
+  List<foods_nodel> order = [];
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -104,7 +105,17 @@ class _Main_pageState extends State<Main_page> {
                 ),
                 SizedBox(
                   height: getHeight(413),
+                  child: order.isNotEmpty ? ListView.builder(itemCount: order.length,itemBuilder: (_, __) {
+                    return Card(
+                      child: ListTile(
+                        title: Text(order[__].food_name),
+                        subtitle: Text(order[__].location),
+                      ),
+                    );
+                  }): SizedBox()
                 ),
+                IconButton(onPressed: (){setState(() {
+                });}, icon: Icon(Icons.refresh)),
                 const Divider(
                   thickness: 0.5,
                   color: Colors.black,
@@ -132,10 +143,13 @@ class _Main_pageState extends State<Main_page> {
                               return SuggestFoods(
                                 ontapp: () {
                                   Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => Info_page(model: foods,)),
-                                      );
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Info_page(
+                                              model: foods,
+                                              order: order,
+                                            )),
+                                  );
                                 },
                                 location: foods.location,
                                 name: foods.food_name,
@@ -166,7 +180,17 @@ class _Main_pageState extends State<Main_page> {
                           location: lagmans.location,
                           name: lagmans.food_name,
                           price: lagmans.food_price,
-                          pic: lagmans.pic, ontapp: () {  },
+                          pic: lagmans.pic,
+                          ontapp: () {
+                            Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Info_page(
+                                              model: lagmans,
+                                              order: order,
+                                            )),
+                                  );
+                          },
                         );
                       }),
                 ),
@@ -187,7 +211,8 @@ class _Main_pageState extends State<Main_page> {
                           location: brands.location!,
                           name: brands.brand_name,
                           price: '\$200',
-                          pic: brands.pic!, ontapp: () {  },
+                          pic: brands.pic!,
+                          ontapp: () {},
                         );
                       }),
                 ),

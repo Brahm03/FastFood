@@ -10,8 +10,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Info_page extends StatefulWidget {
+  final List<foods_nodel> order;
   final foods_nodel model;
-  const Info_page({required this.model, Key? key}) : super(key: key);
+  const Info_page({required this.order, required this.model, Key? key})
+      : super(key: key);
 
   @override
   State<Info_page> createState() => _Info_pageState();
@@ -36,7 +38,11 @@ class _Info_pageState extends State<Info_page> {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(40))),
         onPressed: () {
+          widget.order.add(foods_nodel(pic: foodModel!.pic, food_name: foodModel!.food_name, food_price: foodModel!.food_price, location: foodModel!.location ,nutrational_value: foodModel!.nutrational_value, rating: foodModel!.rating));
+          setState(() {
+          });
           showDialog(
+              
               context: context,
               builder: (context) => AlertDialog(
                     backgroundColor: Colors.transparent,
@@ -45,8 +51,8 @@ class _Info_pageState extends State<Info_page> {
                         width: 100,
                         decoration: Boxdecoration.boxdecoration(
                             color: ColorConst.ButtonColor),
-                        child: Center(
-                            child: CircularProgressIndicator.adaptive())),
+                        child:  Center(
+                            child: Mytext.mytext(text: 'Your food hace been added to busket ${foodModel!.food_name}'))),
                   ));
         },
         child: Row(
@@ -202,22 +208,37 @@ class _Info_pageState extends State<Info_page> {
                                 thickness: 0.5,
                                 color: Colors.black,
                               ),
-                              Row(
-                                children: [
-                                 Icon(Icons.local_fire_department, color: ColorConst.ButtonColor,),
-                                 Mytext.mytext(text: foodModel!.nutrational_value.caloria +' cal', color: ColorConst.TextColor, fontWeight: FontweightConst.w2)
-                                ])
+                              Row(children: [
+                                const Icon(
+                                  Icons.local_fire_department,
+                                  color: ColorConst.ButtonColor,
+                                ),
+                                Mytext.mytext(
+                                    text: foodModel!.nutrational_value.caloria +
+                                        ' cal',
+                                    color: ColorConst.TextColor,
+                                    fontWeight: FontweightConst.w2)
+                              ])
                             ],
                           ))
                         ],
                       ),
-                      SizedBox(height: 40,),
-                      Addition(text: 'Select user', color: Colors.grey,),
-                      SizedBox(height: 40,),
-                      Mytext.mytext(text: 'Additions',color: ColorConst.TextColor),
-                      SizedBox(height: 40,),
-                      Addition(text: 'Panner')
-                      
+                      const SizedBox(
+                        height: 40,
+                      ),
+                      const Addition(
+                        text: 'Select user',
+                        color: Colors.grey,
+                      ),
+                      const SizedBox(
+                        height: 40,
+                      ),
+                      Mytext.mytext(
+                          text: 'Additions', color: ColorConst.TextColor),
+                      const SizedBox(
+                        height: 40,
+                      ),
+                      const Addition(text: 'Panner')
                     ],
                   ),
                 )),
@@ -240,21 +261,34 @@ class _Info_pageState extends State<Info_page> {
             ),
           ),
           Positioned(
+            left: 20,
+            top: 240,
+            child: Chip(
+              shadowColor: Colors.black,
+              elevation: 10,
+              backgroundColor: Colors.white,
+              label: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Mytext.mytext(
+                      text: foodModel!.food_name,
+                      color: ColorConst.TextColor,
+                      size: FontSize.Small,
+                      fontWeight: FontweightConst.bold),
+                  Mytext.mytext(
+                      text: foodModel!.location,
+                      color: ColorConst.TextColor,
+                      fontWeight: FontweightConst.w2)
+                ],
+              ),
+            ),
+          ),
+          Positioned(
+              top: 20,
               left: 20,
-              top: 240,
-              child: Chip(
-                shadowColor: Colors.black,
-                elevation: 10,
-                backgroundColor: Colors.white,
-                label: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Mytext.mytext(text: foodModel!.food_name, color: ColorConst.TextColor, size: FontSize.Small, fontWeight: FontweightConst.bold),
-                    Mytext.mytext(text: foodModel!.location, color: ColorConst.TextColor, fontWeight: FontweightConst.w2)
-                  ],
-                ),
-              ),),
-              Positioned(top: 20, left: 20, child: BackButton(color: Colors.white,))
+              child: BackButton(
+                color: Colors.white,
+              ))
         ],
       ),
     );

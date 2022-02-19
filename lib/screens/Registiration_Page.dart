@@ -151,10 +151,7 @@ class _Registiration_PageState extends State<Registiration_Page> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Mybutton(
-                                        onpressed: () {
-                                          if (_loginkey.currentState!
-                                              .validate()) {}
-                                        },
+                                        onpressed: _onpressedSecond,
                                         color: ColorConst.ButtonColor,
                                         text: 'Login'),
                                     SizedBox(
@@ -229,6 +226,10 @@ class _Registiration_PageState extends State<Registiration_Page> {
                                       validator: (v) {
                                         if (v!.isEmpty) {
                                           return 'fill the gap';
+                                        } else if (!RegExp(
+                                                r'(^(?:[+0]9)?[0-9]{10,12}$)')
+                                            .hasMatch(v)) {
+                                          return 'please enter number';
                                         }
                                       },
                                       controller: _usename_mobile,
@@ -312,6 +313,28 @@ class _Registiration_PageState extends State<Registiration_Page> {
       } else {
         MyMessanger.showMessanger(
             context, 'Ther is a user with this number please try again');
+      }
+    }
+  }
+
+  _onpressedSecond() {
+    if (_loginkey.currentState!.validate()) {
+      String fullname = _usename_mobile.text.trim();
+      String password = _password.text.trim();
+      bool _check = false;
+
+      for (Usermodel users in Userdata.userlist) {
+        if (users.full_name == fullname && users.passoword == password) {
+          Navigator.popAndPushNamed(
+            context,
+            '/main',
+          );
+          _check = true;
+        }
+      }
+
+      if (_check == false) {
+        MyMessanger.showMessanger(context, 'Wrong email or password');
       }
     }
   }
