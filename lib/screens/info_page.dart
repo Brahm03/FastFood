@@ -76,11 +76,13 @@ class _Info_pageState extends State<Info_page> {
         children: [
           Container(
             color: Colors.amber,
+            width: double.infinity,
           ),
           Positioned(
               top: 0,
               child: Container(
-                height: getHeight(254),
+                height: getHeight(294),
+                width: MediaQuery.of(context).size.width,
                 child: Image.asset(
                   foodModel!.pic,
                   fit: BoxFit.cover,
@@ -209,7 +211,13 @@ class _Info_pageState extends State<Info_page> {
                           ))
                         ],
                       ),
+                      SizedBox(height: 40,),
+                      Addition(text: 'Select user', color: Colors.grey,),
+                      SizedBox(height: 40,),
+                      Mytext.mytext(text: 'Additions',color: ColorConst.TextColor),
+                      SizedBox(height: 40,),
                       Addition(text: 'Panner')
+                      
                     ],
                   ),
                 )),
